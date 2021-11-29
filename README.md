@@ -142,10 +142,10 @@ De landingspagina ziet er dan zo uit
 
 ![alt resulthome](images/resulthome.png)
 
-De pagina van klant 1
+De pagina van klant 1 - merk op: **geen portforward meer**
 
 ![alt resultklant1](images/resultklant1.png)
 
-De pagina van klant 2
+De pagina van klant 2 - merk op: **geen portforward meer**
 
 ![alt resultklant2](images/resultklant2.png)
