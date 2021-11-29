@@ -90,7 +90,7 @@ docker run                                \ # we runnen docker
   --name rp                               \ # naam van de container is rp
   --network devnet                        \ # we koppelen meteen aan het devnet netwerk
   -v d:\jorny\nginx:/etc/nginx/conf.d/    \ # we koppelen het volume d:\jorny\nginx op de host aan /etc/nginx/conf.d/
-  -v d:\jorny\www:/etc/nginx/html/  \ # we koppelen het volume d:\jorny\www op de host aan /etc/nginx/html/
+  -v d:\jorny\www:/etc/nginx/html/        \ # we koppelen het volume d:\jorny\www op de host aan /etc/nginx/html/
 ```
 
 De folder `nginx` bevat een bestand `default.conf` met de configuratie van de reverse proxy
@@ -141,3 +141,11 @@ docker run -d -p 80:80 --name rp --network devnet -v d:\jorny\nginx:/etc/nginx/c
 De landingspagina ziet er dan zo uit
 
 ![alt resulthome](images/resulthome.png)
+
+De pagina van klant 1
+
+![alt resultklant1](images/resultklant1.png)
+
+De pagina van klant 2
+
+![alt resultklant2](images/resultklant2.png)
