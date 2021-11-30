@@ -149,3 +149,56 @@ De pagina van klant 1 - merk op: **geen portforward meer**
 De pagina van klant 2 - merk op: **geen portforward meer**
 
 ![alt resultklant2](images/resultklant2.png)
+
+## Met servername
+
+De vorige setups verwezen naar virtual directories. Ik heb een nieuwe klant toegevoegd, klant3 met net dezelfde site.
+
+De bedoeling is om deze klant te bereiken via zijn echte url :)
+
+Hiervoor heb ik de reverse proxy aangepast zodat hij luistert naar `localhost` en naar `www.klant3.be`. Je moet er dan ook wel voor zorgen dat `www.klant3.be` resolvt naar `127.0.0.1` in de hosts file.
+
+De config:
+
+```powershell
+server {
+    listen 80;
+    server_name localhost 127.0.0.1;
+    
+    location /klant1/ {
+        proxy_pass             http://klant1/;
+    }
+    location /klant2/ {
+        proxy_pass             http://klant2/;
+    }
+}
+
+server {
+    listen 80;
+    server_name klant3 www.klant3.be;
+
+    location / {
+        proxy_pass             http://klant3/;
+    }
+}
+```
+
+Om uit te voeren:
+
+```powershell
+# build the images, if necessary
+docker build -t klant1:v0.1 ./klant1
+docker build -t klant2:v0.1 ./klant2
+docker build -t klant3:v0.1 ./klant3
+
+# create the network, if necessary
+docker network create devnet
+
+# run the containers
+docker run -d --name klant1 --network devnet klant1:v0.1
+docker run -d --name klant2 --network devnet klant2:v0.1
+docker run -d --name klant3 --network devnet klant3:v0.1
+
+# run the reverse proxy and map the config file and the index.html
+docker run -d -p 80:80 --name rp --network devnet -v d:\jorny\nginx:/etc/nginx/conf.d/ -v d:\jorny\www:/etc/nginx/html/ nginx:stable
+```
