@@ -7,7 +7,7 @@
 <body class="container">
     <div class="jumbotron">
     <?php
-        $message = "Hello klant 1";
+        $message = "Hello klant 3";
         $version = "0.2";
 
         echo "<h1>" . $message . "</h1>";

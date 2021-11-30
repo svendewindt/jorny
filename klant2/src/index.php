@@ -14,6 +14,7 @@
         echo "<p>Hostname: " . $_ENV['HOSTNAME'] . "</p>" ;
         echo "<p>IP Address: " . $_SERVER['SERVER_ADDR'] . "</p>" ;
         echo "<p>Running version " . $version . " </p>";
+        echo "<p><a href='./test.php'>phpinfo</a></p>";
         echo '<img src="https://www.docker.com/sites/default/files/horizontal.png">';
     ?>
     </div>
